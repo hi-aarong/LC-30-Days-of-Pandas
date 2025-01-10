@@ -1,0 +1,11 @@
+import pandas as pd
+
+def article_views(views: pd.DataFrame) -> pd.DataFrame:
+    ## if author_id == viewer_id, return result table sorted by id in ascending order
+    author_viewed_articles= views[views['author_id'] == views['viewer_id']]
+
+    unique_authors = sorted(author_viewed_articles['author_id'].unique())
+    
+    results= pd.DataFrame({'id': unique_authors})
+
+    return results
