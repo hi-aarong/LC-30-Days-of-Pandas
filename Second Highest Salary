@@ -1,0 +1,9 @@
+def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
+    ##return 2nd highest salary from Employee, if doesn't exist return None
+    employee['salary'].sort_values(ascending=False).drop_duplicates()
+    if len(employee['salary'])<2:
+        return None
+    else:
+        results= employee['salary'].nlargest(2).iloc[-1]
+        df= pd.DataFrame({'SecondHighestSalary': [results]})
+        return df
