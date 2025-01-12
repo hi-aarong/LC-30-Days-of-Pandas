@@ -1,0 +1,10 @@
+import pandas as pd
+
+
+def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
+    #reference the departmentID, return highest salary, ignore duplicates and there is always something in a department
+    merged_df= employee.merge(department, left_on='departmentId', right_on='id')
+    results= merged_df.groupby('departmentId').apply(lambda x: x.nlargest(1, 'salary',keep='all')).reset_index(drop=True)
+    df= results[['name_y', 'name_x', 'salary']]
+    df.columns= ['Department', 'Employee', 'Salary']
+    return df
