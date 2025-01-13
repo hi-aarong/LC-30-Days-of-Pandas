@@ -1,0 +1,7 @@
+import pandas as pd
+
+def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
+    #nunique values in subject_id for teacher_id, ignore dept_id, rename column subject id to cnt
+    df=teacher.groupby('teacher_id')['subject_id'].nunique().reset_index()
+    df=df.rename(columns={'subject_id':'cnt'})
+    return df 
