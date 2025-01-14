@@ -1,0 +1,11 @@
+import pandas as pd
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    #return customer_number where value_counts() greatest, if orders is empty return empty df
+    if orders.empty:
+        return pd.DataFrame(columns=['customer_number'])
+    else:
+      result= orders['customer_number'].value_counts().idxmax()
+      result= pd.DataFrame({'customer_number':[result]})
+
+    return result
