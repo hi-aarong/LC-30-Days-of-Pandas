@@ -1,0 +1,9 @@
+import pandas as pd
+
+def find_managers(employee: pd.DataFrame) -> pd.DataFrame:
+    mask = pd.DataFrame(employee["managerId"].value_counts()>=5)
+    mask = mask[mask["count"]==True].index.tolist()
+
+    employee = employee[employee["id"].isin(mask)][["name"]]
+
+    return employee
